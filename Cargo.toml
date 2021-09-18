@@ -1,0 +1,45 @@
+[package]
+name = "qrtdb"
+version = "0.1.0"
+authors = ["Raphaël Thériault <self@raftar.io>"]
+edition = "2018"
+
+[package.metadata.ndk]
+targets = ["arm64-v8a"]
+platform = 24
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+axum = { version = "0.2", features = ["http2"], default-features = false }
+tower-http = { git = "https://github.com/tower-rs/tower-http", branch = "cors", features = [
+    "cors",
+    "trace",
+] }
+tokio = { version = "1.11", features = ["rt", "sync"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+tracing = { version = "0.1", features = ["async-await"] }
+tracing-android = { git = "https://github.com/raftario/tracing-android" }
+tracing-subscriber = { version = "0.2", features = [
+    "env-filter",
+    "smallvec",
+], default-features = false }
+ndk-sys = "0.2"
+
+[dependencies.quest_hook]
+git = "https://github.com/StackDoubleFlow/quest-hook-rs.git"
+features = ["unity2019"]
+
+[build-dependencies]
+walkdir = "2.3"
+mime_guess = "2.0"
+itertools = "0.10"
+quote = "1.0"
+proc-macro2 = "1.0"
+
+[features]
+embed = []
