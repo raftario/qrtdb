@@ -53,7 +53,7 @@ pub fn init(logs: broadcast::Sender<LogMessage>) {
     debug!("starting log collector...");
 
     thread::Builder::new()
-        .name(format!("{}-log", env!("CARGO_PKG_NAME")))
+        .name(concat!(env!("CARGO_PKG_NAME"), "-log").to_string())
         .spawn(move || {
             let mut logcat = Command::new("logcat")
                 .stdout(Stdio::piped())

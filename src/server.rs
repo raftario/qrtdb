@@ -26,7 +26,7 @@ pub fn init(config: &Config, logs: LogChannel) {
         .thread_name_fn(|| {
             static ID: AtomicUsize = AtomicUsize::new(0);
             format!(
-                concat!(env!("CARGO_PKG_NAME"), "server-{}"),
+                concat!(env!("CARGO_PKG_NAME"), "-server-{}"),
                 ID.fetch_add(1, SeqCst)
             )
         })
